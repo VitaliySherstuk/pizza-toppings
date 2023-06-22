@@ -1,7 +1,9 @@
 package com.vsharstuk.pizzatoppings.service;
 
 import com.vsharstuk.pizzatoppings.entity.Topping;
+import com.vsharstuk.pizzatoppings.dto.ToppingReportDto;
 import com.vsharstuk.pizzatoppings.repository.ToppingRepository;
+import com.vsharstuk.pizzatoppings.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,6 +15,7 @@ import java.util.List;
 public class ToppingService {
 
     private final ToppingRepository toppingRepository;
+    private final UserRepository userRepository;
 
     @Transactional
     public void create(List<Topping> toppings) {
@@ -23,5 +26,9 @@ public class ToppingService {
 
     public List<Topping> findAllToppingByName(List<String> names) {
         return toppingRepository.findAllByNameIn(names);
+    }
+
+    public List<ToppingReportDto> countUsersPerToppings() {
+        return userRepository.countUsersPerTopping();
     }
 }

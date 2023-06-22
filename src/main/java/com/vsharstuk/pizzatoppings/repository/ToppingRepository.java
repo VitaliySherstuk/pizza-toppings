@@ -15,7 +15,4 @@ public interface ToppingRepository extends JpaRepository<Topping, Long> {
     void saveOrUpdate(@Param("name") String toppingName);
 
     List<Topping> findAllByNameIn(List<String> names);
-
-    @Query(value = "select t.name, count(u) from toppings t left join t.users u group by t.name", nativeQuery = true)
-    List<Object[]> countUsersPerTopping();
 }
