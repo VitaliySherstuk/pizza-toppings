@@ -2,13 +2,9 @@ package com.vsharstuk.pizzatoppings.mapper;
 
 import com.vsharstuk.pizzatoppings.dto.ToppingDto;
 import com.vsharstuk.pizzatoppings.entity.Topping;
-import com.vsharstuk.pizzatoppings.entity.User;
 import org.junit.jupiter.api.Test;
 import org.mapstruct.factory.Mappers;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.util.Collections;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -23,11 +19,9 @@ class ToppingMapperTest {
         //given
         Long toppingId = 123l;
         String toppingName = "test";
-        List<User> users = Collections.emptyList();
         Topping entity = new Topping();
         entity.setId(toppingId);
         entity.setName(toppingName);
-        entity.setUsers(users);
 
         //when
         ToppingDto dto = mapper.toToppingDto(entity);

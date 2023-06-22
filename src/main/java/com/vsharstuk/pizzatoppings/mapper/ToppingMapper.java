@@ -7,15 +7,16 @@ import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.ERROR)
-public interface ToppingMapper {
-
-    @Mapping(target = "id", source = "id")
-    @Mapping(target = "name", source = "name")
-    ToppingDto toToppingDto(Topping entity);
+public abstract class ToppingMapper {
 
 
-    @Mapping(target = "id", source = "id")
-    @Mapping(target = "name", source = "name")
+    @Mapping(target = "id", source = "entity.id")
+    @Mapping(target = "name", source = "entity.name")
+    public abstract ToppingDto toToppingDto(Topping entity);
+
+
+    @Mapping(target = "id", source = "dto.id")
+    @Mapping(target = "name", source = "dto.name")
     @Mapping(target = "users", ignore = true)
-    Topping toToppingEntity(ToppingDto dto);
+    public abstract Topping toToppingEntity(ToppingDto dto);
 }

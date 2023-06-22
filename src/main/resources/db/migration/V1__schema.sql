@@ -7,11 +7,13 @@ CREATE TABLE users
 CREATE TABLE toppings
 (
     id serial NOT NULL PRIMARY KEY,
-    name VARCHAR(255),
-    user_id SERIAL NOT NULL
+    name VARCHAR(255) unique
 );
 
-ALTER TABLE toppings
-    ADD CONSTRAINT FK_users_TO_toppings
-        FOREIGN KEY (user_id)
-            REFERENCES users (id);
+CREATE TABLE user_topping
+(
+  user_id BIGINT,
+  topping_id BIGINT,
+  FOREIGN KEY (user_id) REFERENCES users(id),
+  FOREIGN KEY (topping_id) REFERENCES toppings(id)
+);
