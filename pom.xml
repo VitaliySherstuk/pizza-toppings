@@ -125,7 +125,6 @@
 							<sourceDirs>
 								<sourceDir>${project.basedir}/src/main/kotlin</sourceDir>
 								<sourceDir>${project.basedir}/src/main/java</sourceDir>
-								<source>target/generated-sources/annotations</source>
 							</sourceDirs>
 							<annotationProcessorPaths>
 								<annotationProcessorPath>
