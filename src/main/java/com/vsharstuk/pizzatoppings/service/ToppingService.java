@@ -5,6 +5,8 @@ import com.vsharstuk.pizzatoppings.dto.ToppingReportDto;
 import com.vsharstuk.pizzatoppings.repository.ToppingRepository;
 import com.vsharstuk.pizzatoppings.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,7 +30,7 @@ public class ToppingService {
         return toppingRepository.findAllByNameIn(names);
     }
 
-    public List<ToppingReportDto> countUsersPerToppings() {
-        return userRepository.countUsersPerTopping();
+    public Page<ToppingReportDto> countUsersPerToppings(Pageable pageable) {
+        return userRepository.countUsersPerTopping(pageable);
     }
 }

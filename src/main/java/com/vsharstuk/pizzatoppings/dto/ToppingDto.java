@@ -2,13 +2,13 @@ package com.vsharstuk.pizzatoppings.dto;
 
 import lombok.Data;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 
 @Data
 public class ToppingDto {
 
-
    private Long id;
-   @NotNull
+
+   @NotBlank
    private String name;
 }

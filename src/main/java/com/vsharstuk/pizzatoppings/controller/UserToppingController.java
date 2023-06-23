@@ -1,7 +1,7 @@
 package com.vsharstuk.pizzatoppings.controller;
 
-import com.vsharstuk.pizzatoppings.dto.ToppingDto;
 import com.vsharstuk.pizzatoppings.dto.UserDto;
+import com.vsharstuk.pizzatoppings.dto.UserToppingRequest;
 import com.vsharstuk.pizzatoppings.entity.Topping;
 import com.vsharstuk.pizzatoppings.mapper.ToppingMapper;
 import com.vsharstuk.pizzatoppings.mapper.UserMapper;
@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,9 +32,9 @@ public class UserToppingController {
     @PostMapping("/toppings")
     @ResponseStatus(HttpStatus.CREATED)
     public void submitToppings(@PathVariable("user_id") Long userIid,
-                               @RequestBody List<ToppingDto> request) {
+                               @RequestBody @Valid UserToppingRequest request) {
 
-        List<Topping> toppings = request.stream().map(toppingMapper::toToppingEntity).collect(Collectors.toList());
+        List<Topping> toppings = request.getToppings().stream().map(toppingMapper::toToppingEntity).collect(Collectors.toList());
         userService.submit(userIid, toppings);
     }
 

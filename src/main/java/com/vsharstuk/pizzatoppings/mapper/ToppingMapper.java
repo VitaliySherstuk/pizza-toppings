@@ -17,6 +17,5 @@ public abstract class ToppingMapper {
 
     @Mapping(target = "id", source = "dto.id")
     @Mapping(target = "name", source = "dto.name")
-    @Mapping(target = "users", ignore = true)
     public abstract Topping toToppingEntity(ToppingDto dto);
 }
