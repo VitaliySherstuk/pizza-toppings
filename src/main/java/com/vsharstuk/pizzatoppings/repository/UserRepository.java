@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    @Query(value = "SELECT new com.vsharstuk.pizzatoppings.dto.ToppingReportDto(tp.name, COUNT(u.id)) " +
-            "FROM User u LEFT JOIN u.toppings tp GROUP BY tp.name ORDER BY COUNT(u.id) ASC")
+    @Query(value = "SELECT new com.vsharstuk.pizzatoppings.dto.ToppingReportDto(tp.name, COUNT(u.id) as amount) " +
+            "FROM User u LEFT JOIN u.toppings tp GROUP BY tp.name ")
     Page<ToppingReportDto> countUsersPerTopping(Pageable pageable);
 }

@@ -21,6 +21,6 @@ public class ToppingReportController {
     public Page<ToppingReportDto> generateReport (@RequestParam(name = "page_number", required = false, defaultValue = "1") Integer pageNumber,
                                                   @RequestParam(name = "page_size", required = false, defaultValue = "2") Integer pageSize,
                                                   @RequestParam(name = "sort", required = false) String sort) {
-        return toppingService.countUsersPerToppings(PageableUtils.of(pageNumber, pageSize, sort));
+        return toppingService.countUsersPerToppings(PageableUtils.of(pageNumber, pageSize, sort, "amount"));
     }
 }

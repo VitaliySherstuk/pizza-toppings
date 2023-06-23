@@ -8,13 +8,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class PageableUtilsTest {
 
     @Test
-    public void testGetDirection_whenIncorrectSort() {
-        String sort = "gjgfaj";
-        Sort.Direction result = PageableUtils.getDirection(sort);
-        assertEquals(Sort.Direction.ASC, result);
-    }
-
-    @Test
     public void testGetDirection_whenSortIsASC_thenReturnASC() {
         String sort = "aSc";
         Sort.Direction result = PageableUtils.getDirection(sort);
@@ -26,5 +19,19 @@ class PageableUtilsTest {
         String sort = "DeSc";
         Sort.Direction result = PageableUtils.getDirection(sort);
         assertEquals(Sort.Direction.DESC, result);
+    }
+
+    @Test
+    public void testGetDirection_whenSortIsIncorrect() {
+        String sort = "gjgfaj";
+        Sort.Direction result = PageableUtils.getDirection(sort);
+        assertEquals(Sort.Direction.ASC, result);
+    }
+
+    @Test
+    public void testGetDirection_whenSortIsNull() {
+        String sort = null;
+        Sort.Direction result = PageableUtils.getDirection(sort);
+        assertEquals(Sort.Direction.ASC, result);
     }
 }

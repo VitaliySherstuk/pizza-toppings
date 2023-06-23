@@ -3,6 +3,7 @@ package com.vsharstuk.pizzatoppings.controller;
 import com.vsharstuk.pizzatoppings.dto.UserDto;
 import com.vsharstuk.pizzatoppings.dto.UserToppingRequest;
 import com.vsharstuk.pizzatoppings.entity.Topping;
+import com.vsharstuk.pizzatoppings.entity.User;
 import com.vsharstuk.pizzatoppings.mapper.ToppingMapper;
 import com.vsharstuk.pizzatoppings.mapper.UserMapper;
 import com.vsharstuk.pizzatoppings.service.UserService;
@@ -21,7 +22,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/users/{user_id}")
+@RequestMapping("/users")
 @RequiredArgsConstructor
 public class UserToppingController {
 
@@ -29,7 +30,7 @@ public class UserToppingController {
     private final ToppingMapper toppingMapper;
     private final UserMapper userMapper;
 
-    @PostMapping("/toppings")
+    @PostMapping("/{user_id}/toppings")
     @ResponseStatus(HttpStatus.CREATED)
     public void submitToppings(@PathVariable("user_id") Long userIid,
                                @RequestBody @Valid UserToppingRequest request) {
@@ -38,8 +39,14 @@ public class UserToppingController {
         userService.submit(userIid, toppings);
     }
 
-    @GetMapping
+    @GetMapping("/{user_id}")
     public UserDto getUser(@PathVariable("user_id") Long userId) {
         return userMapper.toUserDto(userService.getUser(userId));
+    }
+
+    @PostMapping
+    public UserDto create(@RequestBody @Valid UserDto userDto) {
+        User user = userService.create(userMapper.toUserEntity(userDto));
+        return userMapper.toUserDto(user);
     }
 }
