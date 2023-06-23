@@ -117,6 +117,13 @@
 				<version>${kotlin.version}</version>
 				<executions>
 					<execution>
+						<id>compile</id>
+						<goals>
+							<goal>compile</goal>
+						</goals>
+						<phase>process-sources</phase>
+					</execution>
+					<execution>
 						<id>kapt</id>
 						<goals>
 							<goal>kapt</goal>
