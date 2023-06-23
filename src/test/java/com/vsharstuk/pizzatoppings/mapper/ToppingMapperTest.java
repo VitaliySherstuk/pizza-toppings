@@ -17,7 +17,7 @@ class ToppingMapperTest {
     @Test
     public void testMappingToppingToDto() {
         //given
-        Long toppingId = 123l;
+        Long toppingId = 123L;
         String toppingName = "test";
         Topping entity = new Topping();
         entity.setId(toppingId);
@@ -34,7 +34,7 @@ class ToppingMapperTest {
     @Test
     public void testMappingDtoToTopping() {
         //given
-        Long toppingId = 123l;
+        Long toppingId = 123L;
         String toppingName = "test";
         ToppingDto dto = new ToppingDto();
         dto.setId(toppingId);

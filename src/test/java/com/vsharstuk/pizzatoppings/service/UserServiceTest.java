@@ -30,12 +30,12 @@ class UserServiceTest {
     @InjectMocks
     private UserService userService;
 
-    private final String FIRST_TOPPING_NAME = "first_topping";
-    private final String SECOND_TOPPING_NAME = "second_topping";
-    private final Long FIRST_TOPPING_ID = 1L;
-    private final Long SECOND_TOPPING_ID = 2L;
-    private final Long USER_ID = 123L;
-    private final String USER_EMAIL = "test@example.com";
+    private static final String FIRST_TOPPING_NAME = "first_topping";
+    private static final String SECOND_TOPPING_NAME = "second_topping";
+    private static final Long FIRST_TOPPING_ID = 1L;
+    private static final Long SECOND_TOPPING_ID = 2L;
+    private static final Long USER_ID = 123L;
+    private static final String USER_EMAIL = "test@example.com";
 
     @Test
     public void testSubmitToppings_ToppingsWereSubmitted() {
