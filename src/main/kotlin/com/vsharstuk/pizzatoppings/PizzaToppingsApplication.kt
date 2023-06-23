@@ -1,13 +1,11 @@
-package com.vsharstuk.pizzatoppings;
+package com.vsharstuk.pizzatoppings
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication
+import org.springframework.boot.runApplication
 
 @SpringBootApplication
-public class PizzaToppingsApplication {
+open class PizzaToppingsApplication
 
-	public static void main(String[] args) {
-		SpringApplication.run(PizzaToppingsApplication.class, args);
-	}
-
+fun main(args: Array<String>) {
+    runApplication<PizzaToppingsApplication>(*args)
 }

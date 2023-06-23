@@ -1,13 +1,9 @@
-package com.vsharstuk.pizzatoppings.dto;
+package com.vsharstuk.pizzatoppings.dto
 
-import lombok.Data;
-
-import javax.validation.Valid;
-import java.util.List;
+import lombok.Data
+import javax.validation.Valid
 
 @Data
-public class UserToppingRequest {
-
-    @Valid
-    private List<ToppingDto> toppings;
+class UserToppingRequest {
+    var toppings: @Valid MutableList<ToppingDto>? = null
 }

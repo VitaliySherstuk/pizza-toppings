@@ -1,43 +1,42 @@
-package com.vsharstuk.pizzatoppings.exeption;
+package com.vsharstuk.pizzatoppings.exeption
 
-import com.vsharstuk.pizzatoppings.dto.ErrorResponse;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.ExceptionHandler;
+import com.vsharstuk.pizzatoppings.dto.ErrorResponse
+import org.slf4j.LoggerFactory
+import org.springframework.http.HttpStatus
+import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.MethodArgumentNotValidException
+import org.springframework.web.bind.annotation.ControllerAdvice
+import org.springframework.web.bind.annotation.ExceptionHandler
+import javax.persistence.EntityNotFoundException
 
-import javax.persistence.EntityNotFoundException;
-
-@Slf4j
 @ControllerAdvice
-public class ApplicationExceptionHandler {
+class ApplicationExceptionHandler {
 
-    @ExceptionHandler(EntityNotFoundException.class)
-    protected ResponseEntity<ErrorResponse> handleBadRequestException(EntityNotFoundException exception) {
-        log.error("Handle bad request exception", exception);
-        ErrorResponse errorResponse = new ErrorResponse();
-        errorResponse.setStatus(HttpStatus.BAD_REQUEST);
-        errorResponse.setMessage(exception.getMessage());
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+    private val log = LoggerFactory.getLogger(ApplicationExceptionHandler::class.java)
+    @ExceptionHandler(EntityNotFoundException::class)
+    fun handleBadRequestException(exception: EntityNotFoundException): ResponseEntity<ErrorResponse> {
+        log.error("Handle bad request exception", exception)
+        val errorResponse = ErrorResponse()
+        errorResponse.status = HttpStatus.BAD_REQUEST
+        errorResponse.message = exception.message
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse)
     }
 
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<ErrorResponse> handleMethodArgumentNotValidException(MethodArgumentNotValidException exception) {
-        log.error("Handle Not Valid Argument exception: " + exception);
-        ErrorResponse errorResponse = new ErrorResponse();
-        errorResponse.setStatus(HttpStatus.BAD_REQUEST);
-        errorResponse.setMessage(exception.getMessage());
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+    @ExceptionHandler(MethodArgumentNotValidException::class)
+    fun handleMethodArgumentNotValidException(exception: MethodArgumentNotValidException): ResponseEntity<ErrorResponse> {
+        log.error("Handle Not Valid Argument exception", exception)
+        val errorResponse = ErrorResponse()
+        errorResponse.status = HttpStatus.BAD_REQUEST
+        errorResponse.message = exception.message
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse)
     }
 
-    @ExceptionHandler(Exception.class)
-    protected ResponseEntity<ErrorResponse> handleGeneralException(Exception exception) {
-        log.error("Handle unexpected exception", exception);
-        ErrorResponse errorResponse = new ErrorResponse();
-        errorResponse.setStatus(HttpStatus.INTERNAL_SERVER_ERROR);
-        errorResponse.setMessage(exception.getMessage());
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
+    @ExceptionHandler(Exception::class)
+    fun handleGeneralException(exception: Exception): ResponseEntity<ErrorResponse> {
+        log.error("Handle unexpected exception", exception)
+        val errorResponse = ErrorResponse()
+        errorResponse.status = HttpStatus.INTERNAL_SERVER_ERROR
+        errorResponse.message = exception.message
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse)
     }
 }

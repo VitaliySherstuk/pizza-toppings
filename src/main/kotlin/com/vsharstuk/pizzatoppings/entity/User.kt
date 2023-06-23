@@ -1,43 +1,28 @@
-package com.vsharstuk.pizzatoppings.entity;
+package com.vsharstuk.pizzatoppings.entity
 
-
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
-import java.util.List;
+import lombok.Getter
+import lombok.NoArgsConstructor
+import lombok.Setter
+import org.hibernate.annotations.Fetch
+import org.hibernate.annotations.FetchMode
+import javax.persistence.*
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @Table(name = "users")
-public class User {
-
+class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id;
+    var id: Long? = null
 
     @Column(name = "email")
-    private String email;
+    var email: String? = null
 
     @ManyToMany(fetch = FetchType.EAGER)
     @Fetch(FetchMode.SUBSELECT)
-    @JoinTable(name = "user_topping",
-            joinColumns = {@JoinColumn(name = "user_id")},
-            inverseJoinColumns = {@JoinColumn(name = "topping_id")})
-    private List<Topping> toppings;
+    @JoinTable(name = "user_topping", joinColumns = [JoinColumn(name = "user_id")], inverseJoinColumns = [JoinColumn(name = "topping_id")])
+    var toppings: List<Topping>? = null
 }

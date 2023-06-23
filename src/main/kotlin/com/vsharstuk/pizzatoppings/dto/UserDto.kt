@@ -1,17 +1,15 @@
-package com.vsharstuk.pizzatoppings.dto;
+package com.vsharstuk.pizzatoppings.dto
 
-import lombok.Data;
-
-import javax.validation.constraints.Pattern;
-import java.util.List;
+import lombok.Data
+import javax.validation.constraints.Pattern
 
 @Data
-public class UserDto {
+class UserDto {
+    var id: Long? = null
+    var email: @Pattern(regexp = EMAIL_PATTERN, message = "Incorrect email format") String? = null
+    var toppings: List<ToppingDto>? = null
 
-    private static final String EMAIL_PATTERN = "^[a-zA-Z0-9._%+-]+@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-
-    private Long id;
-    @Pattern(regexp = EMAIL_PATTERN, message = "Incorrect email format")
-    private String email;
-    private List<ToppingDto> toppings;
+    companion object {
+        private const val EMAIL_PATTERN = "^[a-zA-Z0-9._%+-]+@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
+    }
 }

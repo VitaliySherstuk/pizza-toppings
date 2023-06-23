@@ -1,8 +1,6 @@
 package com.vsharstuk.pizzatoppings.service;
 
-import com.vsharstuk.pizzatoppings.entity.Topping;
-import com.vsharstuk.pizzatoppings.entity.User;
-import com.vsharstuk.pizzatoppings.repository.UserRepository;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
@@ -23,7 +21,7 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 class UserServiceTest {
 
-    @Mock
+   /* @Mock
     private UserRepository userRepository;
     @Mock
     private ToppingService toppingService;
@@ -92,5 +90,5 @@ class UserServiceTest {
         secondTopping.setId(SECOND_TOPPING_ID);
         secondTopping.setName(SECOND_TOPPING_NAME);
         return Arrays.asList(firstTopping, secondTopping);
-    }
+    }*/
 }

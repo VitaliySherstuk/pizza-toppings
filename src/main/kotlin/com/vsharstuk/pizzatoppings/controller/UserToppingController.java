@@ -8,6 +8,7 @@ import com.vsharstuk.pizzatoppings.mapper.ToppingMapper;
 import com.vsharstuk.pizzatoppings.mapper.UserMapper;
 import com.vsharstuk.pizzatoppings.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,8 +28,9 @@ import java.util.stream.Collectors;
 public class UserToppingController {
 
     private final UserService userService;
-    private final ToppingMapper toppingMapper;
-    private final UserMapper userMapper;
+    private ToppingMapper toppingMapper;
+
+    private UserMapper userMapper;
 
     @PostMapping("/{user_id}/toppings")
     @ResponseStatus(HttpStatus.CREATED)
