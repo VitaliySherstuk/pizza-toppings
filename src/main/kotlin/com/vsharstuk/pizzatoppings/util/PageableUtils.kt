@@ -7,7 +7,7 @@ import org.springframework.data.domain.Pageable
 import org.springframework.data.domain.Sort
 import org.springframework.data.jpa.domain.JpaSort
 
-@UtilityClass
+
 object PageableUtils {
     @JvmStatic
     fun of(pageNumber: Int, pageSize: Int, sort: String?, propertyName: String?): Pageable {
