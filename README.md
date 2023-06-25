@@ -14,4 +14,4 @@
 Приведу пример kotlin-maven-plugin с плагинами, которым пробовал решить проблему в ветке "kotlin". Но при его использоании не происходит 
 генерация классов маперов.
 
-![img.png](img.png)
+![Plugin.png](src%2Fmain%2Fresources%2FPlugin.png)
