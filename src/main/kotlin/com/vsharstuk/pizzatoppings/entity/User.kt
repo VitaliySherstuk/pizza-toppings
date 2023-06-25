@@ -1,18 +1,13 @@
 package com.vsharstuk.pizzatoppings.entity
 
-import lombok.Getter
-import lombok.NoArgsConstructor
-import lombok.Setter
 import org.hibernate.annotations.Fetch
 import org.hibernate.annotations.FetchMode
 import javax.persistence.*
 
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
 @Table(name = "users")
 class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")

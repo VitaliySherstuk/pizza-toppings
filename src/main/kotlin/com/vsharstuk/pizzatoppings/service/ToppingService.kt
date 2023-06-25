@@ -4,17 +4,20 @@ import com.vsharstuk.pizzatoppings.dto.ToppingReportDto
 import com.vsharstuk.pizzatoppings.entity.Topping
 import com.vsharstuk.pizzatoppings.repository.ToppingRepository
 import com.vsharstuk.pizzatoppings.repository.UserRepository
-import lombok.RequiredArgsConstructor
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
-@RequiredArgsConstructor
-open class ToppingService {
-    private val toppingRepository: ToppingRepository? = null
-    private val userRepository: UserRepository? = null
+class ToppingService {
+
+    @Autowired
+    private lateinit var toppingRepository: ToppingRepository
+    @Autowired
+    private lateinit var userRepository: UserRepository
+
     @Transactional
     fun create(toppings: List<Topping?>) {
         toppings.forEach { topping ->

@@ -2,16 +2,23 @@ package com.vsharstuk.pizzatoppings.mapper
 
 import com.vsharstuk.pizzatoppings.dto.ToppingDto
 import com.vsharstuk.pizzatoppings.entity.Topping
-import org.mapstruct.Mapper
-import org.mapstruct.Mapping
-import org.mapstruct.ReportingPolicy
+import org.springframework.stereotype.Component
 
-@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.ERROR)
-interface ToppingMapper {
-    @Mapping(target = "id", source = "entity.id")
-    @Mapping(target = "name", source = "entity.name")
-    fun toToppingDto(entity: Topping?): ToppingDto?
-    @Mapping(target = "id", source = "dto.id")
-    @Mapping(target = "name", source = "dto.name")
-    fun toToppingEntity(dto: ToppingDto?): Topping?
+
+@Component
+open class ToppingMapper {
+
+    fun toToppingDto(entity: Topping?): ToppingDto?{
+        val dto = ToppingDto()
+        dto.id = entity?.id
+        dto.name = entity?.name
+        return dto
+    }
+
+    fun toToppingEntity(dto: ToppingDto?): Topping?{
+        val entity = Topping()
+        entity.id = dto?.id
+        entity.name = dto?.name
+        return entity
+    }
 }

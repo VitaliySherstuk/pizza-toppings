@@ -3,16 +3,18 @@ package com.vsharstuk.pizzatoppings.service
 import com.vsharstuk.pizzatoppings.entity.Topping
 import com.vsharstuk.pizzatoppings.entity.User
 import com.vsharstuk.pizzatoppings.repository.UserRepository
-import lombok.RequiredArgsConstructor
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import java.util.stream.Collectors
 
 @Service
-@RequiredArgsConstructor
-open class UserService {
-    private val userRepository: UserRepository? = null
-    private val toppingService: ToppingService? = null
+class UserService {
+
+    @Autowired
+    private lateinit var userRepository: UserRepository
+    @Autowired
+    private lateinit var toppingService: ToppingService
+
     @Transactional
     fun submit(userId: Long, toppings: List<Topping?>) {
         val user = userRepository!!.getById(userId)

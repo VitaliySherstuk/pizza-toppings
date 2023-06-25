@@ -1,20 +1,27 @@
 package com.vsharstuk.pizzatoppings.mapper
 
+import com.vsharstuk.pizzatoppings.dto.ToppingDto
 import com.vsharstuk.pizzatoppings.dto.UserDto
+import com.vsharstuk.pizzatoppings.entity.Topping
 import com.vsharstuk.pizzatoppings.entity.User
-import org.mapstruct.IterableMapping
-import org.mapstruct.Mapper
-import org.mapstruct.Mapping
-import org.mapstruct.ReportingPolicy
+import org.springframework.stereotype.Component
+import java.util.stream.Collectors
 
-@Mapper(componentModel = "spring", uses = [ToppingMapper::class], unmappedTargetPolicy = ReportingPolicy.ERROR)
-interface UserMapper {
-    @Mapping(target = "id", source = "entity.id")
-    @Mapping(target = "email", source = "entity.email")
-    @IterableMapping(qualifiedByName = ["toToppingDto"])
-    fun toUserDto(entity: User?): UserDto?
-    @Mapping(target = "id", source = "dto.id")
-    @Mapping(target = "email", source = "dto.email")
-    @Mapping(target = "toppings", ignore = true)
-    fun toUserEntity(dto: UserDto?): User?
+@Component
+open class UserMapper {
+
+    fun toUserDto(entity: User?): UserDto?{
+        val dto = UserDto()
+        dto?.id = entity?.id
+        dto.email = entity?.email
+        dto.toppings = entity?.toppings?.stream()?.map { topping: Topping? -> ToppingMapper().toToppingDto(topping) }?.collect(Collectors.toList()) as List<ToppingDto>?
+        return dto;
+    }
+
+    fun toUserEntity(dto: UserDto?): User?{
+        val entity = User()
+        entity?.id = dto?.id
+        entity?.email = dto?.email
+        return entity
+    }
 }
